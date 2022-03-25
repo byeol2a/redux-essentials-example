@@ -1,8 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from '@reduxjs/toolkit'
 
-export const store = configureStore({
+import notificationsReducer from '../features/notifications/notificationsSlice'
+import { apiSlice } from '../features/api/apiSlice'
+
+export default configureStore({
   reducer: {
-    counter: counterReducer,
+    notifications: notificationsReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
-});
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+})

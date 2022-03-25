@@ -1,1 +1,0 @@
-# redux-essentials-example
